@@ -1,0 +1,10 @@
+name: redis
+image:
+  repository: library
+  name: redis
+  tag: latest
+replicaCount: 1
+
+svc:
+  enabled: true
+  port: 6379

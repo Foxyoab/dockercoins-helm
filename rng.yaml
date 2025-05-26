@@ -1,0 +1,7 @@
+name: rng
+image:
+  name: rng
+replicaCount: 4
+
+svc:
+  enabled: true

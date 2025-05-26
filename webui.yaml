@@ -1,0 +1,8 @@
+name: webui
+image:
+  name: webui
+replicaCount: 4
+
+svc:
+  enabled: true
+  type: NodePort

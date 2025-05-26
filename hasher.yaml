@@ -1,0 +1,6 @@
+name: hasher
+image:
+  name: hasher
+replicaCount: 4
+svc:
+  enabled: true

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: {{ .Values.name }}
+        image: {{ .Values.image.repository }}/{{ .Values.image.name }}:{{ .Values.image.tag }}
+        {{- if .Values.svc.enabled | default false }}
+        ports:
+        - containerPort: {{ .Values.svc.port | default 80 }}
+        {{- end }}
+        {{- if and (.Values.svc.enabled | default false) (eq (int (.Values.svc.port | default 80)) 80) }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.svc.port | default 80 }}
+        {{- end }}

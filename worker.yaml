@@ -1,0 +1,7 @@
+name: worker
+image:
+  name: worker
+replicaCount: 4
+
+svc:
+ enabled: false
